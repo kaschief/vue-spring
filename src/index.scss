@@ -1,0 +1,215 @@
+@import "~bootstrap/scss/bootstrap";
+
+@mixin mq($width, $type: min) {
+  @if map_has_key($breakpoints, $width) {
+    $width: map_get($breakpoints, $width);
+    @if $type == max {
+      $width: $width - 1px;
+    }
+    @media only screen and (#{$type}-width: $width) {
+      @content;
+    }
+  }
+}
+
+$breakpoints: (
+  "phone-small": 360px,
+  "phone": 400px,
+  "phone-wide": 480px,
+  "phablet": 560px,
+  "tablet-small": 640px,
+  "tablet": 768px,
+  "tablet-wide": 1024px,
+  "desktop": 1248px,
+  "desktop-wide": 1440px,
+);
+
+body {
+  background: #f7f7f7;
+  background-image: url("https://images.unsplash.com/photo-1546708497-5206823f291b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1498&q=80");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: repeat;
+  background-position: right;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+}
+
+.home {
+  background-color: rgba(0, 0, 0, 0.6);
+  margin: 25px;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+}
+
+.bar {
+  display: flex;
+  margin: 20px 0;
+  justify-content: center;
+
+  input {
+    max-width: 200px;
+    align-self: center;
+    height: calc(2.25rem + 2px);
+    padding: 0.375rem 0.75rem;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+  }
+
+  .btn {
+    height: calc(2.25rem + 2px);
+    font-size: 13px;
+  }
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: minmax(auto, 200px);
+  gap: 25px;
+  margin-top: 30px;
+  padding-bottom: 45px;
+
+  @include mq("tablet") {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: minmax(auto, 200px);
+  }
+
+  .gif-wrapper {
+    .image {
+      height: 100%;
+      width: 100%;
+    }
+  }
+}
+
+.pagination {
+  margin: 20px;
+  align-self: center;
+}
+
+.modal {
+  display: flex;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.8);
+
+  .modal-wrapper {
+    position: relative;
+    max-width: 340px;
+
+    margin: auto;
+    width: 100%;
+    border-radius: 5px;
+    z-index: 1;
+    box-shadow: 0 8px 8px rgba(black, 0.5);
+    background: rgba(black, 0.4);
+    padding: 30px 0;
+    display: grid;
+    grid-template-areas:
+      "text"
+      "rest";
+    overflow: hidden;
+
+    @include mq("tablet") {
+      max-width: 630px;
+    }
+
+    .icon {
+      cursor: pointer;
+      position: absolute;
+      top: 5px;
+      width: 30px;
+      height: 30px;
+      color: white;
+      display: flex;
+      padding: 5px;
+      z-index: 4;
+      right: 5px;
+      @include mq("tablet") {
+        top: 8px;
+        right: 8px;
+        width: 35px;
+        height: 35px;
+      }
+      svg {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+
+  .text {
+    grid-area: text;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    width: 100%;
+    color: white;
+    text-align: center;
+    font-size: 13px;
+    @include mq("tablet") {
+      font-size: 15px;
+    }
+  }
+
+  .lower {
+    grid-area: rest;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px;
+
+    @include mq("tablet") {
+      padding: 40px;
+    }
+
+    .image-wrapper {
+      justify-content: center;
+      width: 100%;
+      display: flex;
+      max-width: 150px;
+      max-height: 150px;
+
+      @include mq("tablet") {
+        max-width: 400px;
+        max-height: 400px;
+      }
+
+      img {
+        width: 100%;
+        object-fit: contain;
+      }
+    }
+
+    .links {
+      display: flex;
+      flex: 2;
+
+      .text {
+        width: 100%;
+        text-align: center;
+        font-size: 13px;
+        color: white;
+        cursor: pointer;
+        @include mq("tablet") {
+          font-size: 15px;
+        }
+      }
+    }
+  }
+}
