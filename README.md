@@ -28,7 +28,7 @@ This repository delivers a basic setup with webpack, jest and an express server 
 ## Hints
 
 * To run the webpack dev with watch, run `yarn dev`
-* To run the server, run `yarn serve`
+* To run the server, run `yarn serv`
 * To run the tests, run `yarn jest`
 
 Your application should be accessible on `localhost:3000`
