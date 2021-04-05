@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="home" v-if="renderDisplay">
 
 	<div class="bar">
 		<input
@@ -97,6 +97,10 @@
                 end = start + this.itemsPerPage;
 
             return this.displayedResults.slice(start, end);
+        }
+
+        get renderDisplay(): boolean {
+            return this.loadedResults.length > 0;
         }
 
         getGifs(): void {
